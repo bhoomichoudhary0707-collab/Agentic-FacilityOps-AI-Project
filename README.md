@@ -1,24 +1,29 @@
 # Agentic FacilityOps AI
 
-An AI-powered smart facility operations platform designed to monitor facility resources, detect abnormal patterns, and provide intelligent recommendations for efficient operations.
+An AI-powered smart facility operations platform designed to monitor facility resources, detect abnormal patterns, analyze equipment health, and provide intelligent recommendations for efficient facility operations.
 
 ---
 
 ## Project Overview
 
-Agentic FacilityOps AI is a smart facility management project that uses AI-based agents to analyze operational data and generate useful insights.
+Agentic FacilityOps AI is a smart facility management platform that uses AI-based agents to analyze operational data and generate useful insights.
 
-The project is being developed incrementally through multiple milestones. The current implementation includes **Milestone 1: Energy Intelligence and Monitoring**.
+The project is being developed incrementally through multiple milestones. The current implementation includes:
+
+- **Milestone 1: Energy Intelligence and Monitoring**
+- **Milestone 2: Predictive Maintenance**
+
+The platform integrates both agents into a single Streamlit application and supports facility-based monitoring through an **Active Location** selection.
 
 ---
 
-## Milestone 1: Energy Intelligence and Monitoring
+# Milestone 1: Energy Intelligence and Monitoring
 
 Milestone 1 focuses on monitoring and analyzing facility energy consumption.
 
 The system integrates facility utility and IoT-related data and uses an Energy Agent to analyze consumption patterns, detect anomalies, and generate energy-efficiency recommendations.
 
-### Features Implemented
+## Features Implemented
 
 - Energy consumption monitoring
 - Total, average, and peak energy analytics
@@ -38,7 +43,7 @@ The Energy Agent performs the following tasks:
 1. Loads the facility dataset
 2. Analyzes energy consumption
 3. Calculates total, average, and peak energy usage
-4. Detects abnormal patterns
+4. Detects abnormal consumption patterns
 5. Evaluates predictions using labelled data
 6. Generates energy-efficiency recommendations
 
@@ -63,49 +68,58 @@ Each record is classified as:
 
 ---
 
-## Dataset
+# Milestone 2: Predictive Maintenance
 
-For the current prototype, the project uses **simulated facility utility and IoT data**.
+Milestone 2 extends the platform with an AI-based **Maintenance Agent** for monitoring equipment health and identifying assets that may require maintenance.
 
-The dataset contains the following columns:
+The Maintenance Agent analyzes asset condition parameters and assigns a health score to each monitored asset.
 
-| Column | Description |
-|---|---|
-| `timestamp` | Date and time of the reading |
-| `electricity_kwh` | Electricity consumption |
-| `water_liters` | Water consumption |
-| `temperature_c` | Temperature reading |
-| `hvac_usage` | HVAC usage |
-| `occupancy` | Number of occupants |
-| `label` | Ground-truth label used for evaluation |
+## Features Implemented
 
----
-
-## Dashboard
-
-The Streamlit dashboard provides:
-
-- Key energy metrics
-- Total energy consumption
-- Average energy usage
-- Peak energy usage
-- Validation accuracy
-- Energy consumption trends
-- Energy vs occupancy visualization
-- Detected anomalies
-- Energy Agent recommendations
-- Integrated facility dataset view
+- Asset health monitoring
+- Equipment condition analysis
+- Health score calculation
+- Temperature-based condition checking
+- Vibration-based condition checking
+- Pressure-based condition checking
+- Operating-hours monitoring
+- Maintenance status classification
+- Maintenance alerts
+- Facility-based asset monitoring
+- Integration with the existing Streamlit dashboard
 
 ---
 
-## Technology Stack
+## Maintenance Agent
 
-- Python
-- Streamlit
-- Pandas
-- NumPy
-- Scikit-learn
-- Plotly
+The Maintenance Agent performs the following process:
 
----
+1. Loads the asset monitoring dataset
+2. Initializes the health score for each asset
+3. Checks equipment parameters against predefined thresholds
+4. Reduces the health score when critical conditions are detected
+5. Determines the maintenance status of each asset
+6. Generates maintenance alerts for critical cases
+7. Displays the results through the Streamlit dashboard
 
+### Asset Health Categories
+
+Assets are categorized into:
+
+- `Healthy`
+- `Monitor Closely`
+- `Maintenance Required`
+- `Immediate Maintenance`
+
+### Maintenance Flow
+
+```text
+Asset Data
+    ↓
+Parameter Analysis
+    ↓
+Health Score Calculation
+    ↓
+Maintenance Classification
+    ↓
+Maintenance Alert
