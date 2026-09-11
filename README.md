@@ -96,7 +96,7 @@ Future Development
 
 The platform can be further extended with cost optimization, cross-agent orchestration, executive reporting, advanced forecasting, real-time data integration, and enterprise deployment.
 
-##License
+## License
 
 This project is licensed under the MIT License.
 
