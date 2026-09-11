@@ -1,0 +1,40 @@
+timestamp,facility,zone,access_type,person_type,event_type,access_status
+2026-09-01 08:00,Headquarters • Building A,Main Entrance,Entry,Employee,Access Granted,Granted
+2026-09-01 08:30,Headquarters • Building A,Main Entrance,Entry,Employee,Access Granted,Granted
+2026-09-01 09:00,Headquarters • Building A,Server Room,Entry,Employee,Access Granted,Granted
+2026-09-01 09:30,Headquarters • Building A,Server Room,Entry,Visitor,Unauthorized Access,Denied
+2026-09-01 10:00,Headquarters • Building A,Office Floor,Entry,Employee,Access Granted,Granted
+2026-09-01 10:30,Headquarters • Building A,Office Floor,Exit,Employee,Access Granted,Granted
+2026-09-01 11:00,Headquarters • Building A,Main Entrance,Entry,Visitor,Visitor Access,Granted
+2026-09-01 11:30,Headquarters • Building A,Restricted Area,Entry,Visitor,Unauthorized Access,Denied
+2026-09-01 12:00,Headquarters • Building A,Office Floor,Entry,Employee,Access Granted,Granted
+2026-09-01 13:00,Headquarters • Building A,Main Entrance,Entry,Employee,Access Granted,Granted
+2026-09-01 14:00,Headquarters • Building A,Server Room,Entry,Employee,Access Granted,Granted
+2026-09-01 15:00,Headquarters • Building A,Restricted Area,Entry,Unknown,Unauthorized Access,Denied
+2026-09-01 16:00,Headquarters • Building A,Office Floor,Exit,Employee,Access Granted,Granted
+2026-09-01 17:00,Headquarters • Building A,Main Entrance,Exit,Employee,Access Granted,Granted
+2026-09-01 18:00,Headquarters • Building A,Server Room,Entry,Unknown,Unauthorized Access,Denied
+2026-09-01 08:00,Corporate Office • Building B,Main Entrance,Entry,Employee,Access Granted,Granted
+2026-09-01 09:00,Corporate Office • Building B,Office Floor,Entry,Employee,Access Granted,Granted
+2026-09-01 10:00,Corporate Office • Building B,Server Room,Entry,Visitor,Unauthorized Access,Denied
+2026-09-01 11:00,Corporate Office • Building B,Office Floor,Entry,Employee,Access Granted,Granted
+2026-09-01 12:00,Corporate Office • Building B,Main Entrance,Entry,Visitor,Visitor Access,Granted
+2026-09-01 13:00,Corporate Office • Building B,Restricted Area,Entry,Unknown,Unauthorized Access,Denied
+2026-09-01 14:00,Corporate Office • Building B,Office Floor,Exit,Employee,Access Granted,Granted
+2026-09-01 15:00,Corporate Office • Building B,Server Room,Entry,Employee,Access Granted,Granted
+2026-09-01 16:00,Corporate Office • Building B,Main Entrance,Exit,Employee,Access Granted,Granted
+2026-09-01 17:00,Corporate Office • Building B,Restricted Area,Entry,Visitor,Unauthorized Access,Denied
+2026-09-01 08:00,University Campus,Block A,Entry,Student,Access Granted,Granted
+2026-09-01 08:30,University Campus,Block A,Entry,Student,Access Granted,Granted
+2026-09-01 09:00,University Campus,Block A,Entry,Faculty,Access Granted,Granted
+2026-09-01 09:30,University Campus,Lab Area,Entry,Student,Access Granted,Granted
+2026-09-01 10:00,University Campus,Lab Area,Entry,Visitor,Unauthorized Access,Denied
+2026-09-01 10:30,University Campus,Block A,Exit,Student,Access Granted,Granted
+2026-09-01 11:00,University Campus,Restricted Lab,Entry,Unknown,Unauthorized Access,Denied
+2026-09-01 12:00,University Campus,Block A,Entry,Faculty,Access Granted,Granted
+2026-09-01 13:00,University Campus,Block A,Entry,Student,Access Granted,Granted
+2026-09-01 14:00,University Campus,Restricted Lab,Entry,Visitor,Unauthorized Access,Denied
+2026-09-01 15:00,University Campus,Lab Area,Entry,Student,Access Granted,Granted
+2026-09-01 16:00,University Campus,Block A,Exit,Student,Access Granted,Granted
+2026-09-01 17:00,University Campus,Main Entrance,Entry,Visitor,Visitor Access,Granted
+2026-09-01 18:00,University Campus,Restricted Lab,Entry,Unknown,Unauthorized Access,Denied
