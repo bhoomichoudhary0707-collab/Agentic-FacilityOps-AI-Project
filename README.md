@@ -1,49 +1,53 @@
 # Agentic FacilityOps AI
 
-An AI-powered smart facility operations platform that combines energy monitoring, predictive maintenance, occupancy intelligence, and security monitoring into a unified facility management dashboard.
+An AI-powered smart facility operations platform that combines energy intelligence, predictive maintenance, occupancy analytics, security monitoring, and cost optimization into a unified facility management dashboard.
 
 ## Overview
 
-Agentic FacilityOps AI is designed to help facility teams monitor operational conditions, identify abnormal patterns, assess equipment health, analyze space utilization, detect security events, and generate actionable insights.
+Agentic FacilityOps AI is designed to help facility teams monitor operational conditions, identify abnormal patterns, assess equipment health, analyze space utilization, detect security events, and identify potential cost-saving opportunities.
 
-The platform integrates multiple specialized agents into a single **Streamlit dashboard** with support for monitoring different facilities through an **Active Location** selection.
+The platform uses specialized AI agents for different facility operations and integrates their outputs through a centralized **Streamlit dashboard**.
+
+The system also supports monitoring multiple facilities through an **Active Location** selection.
 
 ## Key Features
 
-### Energy Intelligence
+### ⚡ Energy Intelligence
 
-- Monitor electricity, water, temperature, HVAC, and occupancy data
+- Monitor electricity, water, temperature, HVAC usage, and occupancy
 - Calculate total, average, and peak energy consumption
 - Visualize energy consumption trends
 - Detect abnormal consumption patterns using **Isolation Forest**
+- Identify potential energy wastage
 - Generate energy-efficiency recommendations
-- Analyze energy consumption against occupancy
+- Analyze energy consumption in relation to occupancy
 
-### Predictive Maintenance
+### 🔧 Predictive Maintenance
 
-- Monitor equipment condition and operational parameters
+- Monitor equipment operating conditions
 - Analyze temperature, vibration, pressure, and operating hours
 - Calculate equipment health scores
-- Classify asset condition into:
+- Classify equipment condition as:
   - Healthy
   - Monitor Closely
   - Maintenance Required
   - Immediate Maintenance
 - Generate maintenance alerts for critical equipment conditions
+- Support proactive maintenance planning
 
-### Occupancy Intelligence
+### 👥 Occupancy Intelligence
 
-- Monitor facility occupancy levels
-- Calculate space utilization based on occupancy and capacity
+- Monitor occupancy levels across facilities
+- Calculate space utilization using occupancy and capacity
 - Identify high-utilization and overcrowded conditions
-- Compare actual occupancy with building capacity
-- Generate occupancy insights
+- Compare actual occupancy with facility capacity
+- Generate occupancy-related insights
 - Forecast occupancy using a **Random Forest Regressor**
 - Evaluate forecasting performance using an unseen test dataset
 
 The current simulated occupancy dataset achieves approximately **86% forecast accuracy** on the unseen test portion.
 
-### Security Intelligence
+### 🛡️ Security Intelligence
 
 - Monitor facility access events
 - Track granted and denied access
@@ -53,78 +57,64 @@ The current simulated occupancy dataset achieves approximately **86% forecast ac
 - Monitor visitor access events
 - Provide security-related insights
 
+### 💰 Cost Optimization
+
+- Estimate operational energy costs
+- Estimate maintenance-related costs
+- Identify potential energy savings
+- Estimate potential maintenance savings
+- Analyze facility space utilization for resource optimization
+- Generate cost-saving recommendations
+- Combine information from Energy, Maintenance, and Occupancy agents
+
+The Cost Optimization Agent demonstrates **cross-agent intelligence** by using outputs from multiple operational agents to generate higher-level cost insights.
+
+> Cost figures and savings estimates are based on simulated operational data and illustrative assumptions for demonstration purposes.
+
 ## Dashboard
 
-The Streamlit dashboard provides a unified interface for:
+The application provides a unified Streamlit dashboard containing:
 
-- Energy Intelligence
-- Predictive Maintenance
-- Occupancy Intelligence
-- Security Intelligence
-- Facility Reports
+- 🏠 Overview
+- ⚡ Energy Intelligence
+- 🔧 Predictive Maintenance
+- 👥 Occupancy Intelligence
+- 🛡️ Security Intelligence
+- 💰 Cost Optimization
+- 📊 Facility Reports
 
-The **Active Location** feature allows the dashboard to display data for different facilities.
+### Active Location
 
-Currently supported facilities include:
+The dashboard supports multiple simulated facilities:
 
 - Headquarters • Building A
 - Corporate Office • Building B
 - University Campus
 
-## Technology Stack
+Selecting an active location filters the relevant operational data and updates the corresponding agent insights.
 
-- **Python**
-- **Pandas**
-- **NumPy**
-- **Scikit-learn**
-- **Streamlit**
-- **Plotly**
-- **GitHub**
-
-## Data
-
-The project currently uses simulated facility datasets covering:
-
-Energy and utility consumption
-Equipment condition and asset monitoring
-Occupancy and facility capacity
-Security and access events
-
-These datasets are used to demonstrate the platform's monitoring, analysis, forecasting, alert generation, and insight capabilities.
-
-Future Development
-
-The platform can be further extended with cost optimization, cross-agent orchestration, executive reporting, advanced forecasting, real-time data integration, and enterprise deployment.
-
-## License
-
-This project is licensed under the MIT License.
-
-## Project Structure
+## System Architecture
 
 ```text
-Agentic-FacilityOps-AI/
-│
-├── .streamlit/
-│   └── config.toml
-│
-├── agents/
-│   ├── energy_agent.py
-│   ├── maintenance_agent.py
-│   ├── occupancy_agent.py
-│   └── security_agent.py
-│
-├── data/
-│   ├── energy_data.csv
-│   ├── asset_data.csv
-│   ├── occupancy_data.csv
-│   └── security_data.csv
-│
-├── utils/
-│
-├── app.py
-├── main.py
-├── README.md
-├── LICENSE
-├── requirements.txt
-└── .gitignore
+                 Facility Data
+                      │
+       ┌──────────────┼──────────────┐
+       │              │              │
+       ▼              ▼              ▼
+ Energy Agent   Maintenance Agent   Occupancy Agent
+       │              │              │
+       │              │              │
+       └──────────────┼──────────────┘
+                      │
+                      ▼
+              Cost Optimization Agent
+                      │
+                      ▼
+             Facility Intelligence
+                      │
+                      ▼
+             Streamlit Dashboard
+                      │
+          ┌───────────┴───────────┐
+          ▼                       ▼
+   Security Agent          Executive Insights
