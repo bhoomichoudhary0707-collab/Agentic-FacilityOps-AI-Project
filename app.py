@@ -6,6 +6,7 @@ from agents.energy_agent import EnergyAgent
 from agents.maintenance_agent import MaintenanceAgent
 from agents.occupancy_agent import OccupancyAgent
 from agents.security_agent import SecurityAgent
+from agents.cost_agent import CostOptimizationAgent
 
 
 # ==========================================
@@ -131,6 +132,7 @@ NAV_PAGES = [
     "🔧 Maintenance",
     "👥 Occupancy",
     "🛡️ Security",
+    "💰 Cost Optimization",
     "📊 Reports"
 ]
 
@@ -416,7 +418,29 @@ occupancy_forecast, occupancy_accuracy = (
 occupancy_insights = (
     occupancy_agent.generate_insights()
 )
+# ==========================================
+# COST OPTIMIZATION
+# ==========================================
 
+# Prepare maintenance data for Cost Optimization Agent
+cost_maintenance_df = maintenance_results.copy()
+
+if "maintenance_prediction" in cost_maintenance_df.columns:
+    cost_maintenance_df["status"] = (
+        cost_maintenance_df["maintenance_prediction"]
+    )
+
+cost_agent = CostOptimizationAgent(
+    energy_df,
+    cost_maintenance_df,
+    occupancy_status
+)
+
+cost_results = cost_agent.analyze_costs()
+
+cost_recommendations = (
+    cost_agent.generate_recommendations()
+)
 
 # ==========================================
 # OVERVIEW PAGE
@@ -1395,6 +1419,186 @@ elif page == "🛡️ Security":
             hide_index=True
         )
 
+# ==========================================
+# COST OPTIMIZATION PAGE
+# ==========================================
+
+elif page == "💰 Cost Optimization":
+
+    st.title(
+        "Cost Optimization"
+    )
+
+    st.caption(
+        f"AI-powered operational cost analysis • {facility}"
+    )
+
+    st.divider()
+
+    # --------------------------------------
+    # EXECUTIVE COST OVERVIEW
+    # --------------------------------------
+
+    st.subheader(
+        "💰 Executive Cost Overview"
+    )
+
+    c1, c2, c3, c4 = st.columns(4)
+
+    with c1:
+
+        st.metric(
+            "Estimated Energy Cost",
+            f"₹{cost_results['energy_cost']:,.0f}"
+        )
+
+    with c2:
+
+        st.metric(
+            "Estimated Maintenance Cost",
+            f"₹{cost_results['maintenance_cost']:,.0f}"
+        )
+
+    with c3:
+
+        st.metric(
+            "Potential Energy Savings",
+            f"₹{cost_results['potential_energy_saving']:,.0f}"
+        )
+
+    with c4:
+
+        st.metric(
+            "Potential Total Savings",
+            f"₹{cost_results['total_potential_savings']:,.0f}"
+        )
+
+    st.divider()
+
+    # --------------------------------------
+    # COST BREAKDOWN
+    # --------------------------------------
+
+    st.subheader(
+        "📊 Operational Cost Breakdown"
+    )
+
+    cost_breakdown = pd.DataFrame({
+        "Category": [
+            "Energy",
+            "Maintenance"
+        ],
+        "Estimated Cost": [
+            cost_results["energy_cost"],
+            cost_results["maintenance_cost"]
+        ]
+    })
+
+    fig_cost = px.bar(
+        cost_breakdown,
+        x="Category",
+        y="Estimated Cost",
+        title="Estimated Operational Cost by Category"
+    )
+
+    fig_cost.update_layout(
+        xaxis_title="Cost Category",
+        yaxis_title="Estimated Cost (₹)"
+    )
+
+    fig_cost = chart_theme(
+        fig_cost
+    )
+
+    st.plotly_chart(
+        fig_cost,
+        use_container_width=True
+    )
+
+    st.divider()
+
+    # --------------------------------------
+    # CROSS-AGENT INTELLIGENCE
+    # --------------------------------------
+
+    st.subheader(
+        "🤖 Cross-Agent Intelligence"
+    )
+
+    st.info(
+        """
+        **Energy Agent →** identifies energy consumption patterns
+
+        **Maintenance Agent →** identifies equipment requiring attention
+
+        **Occupancy Agent →** analyzes facility space utilization
+
+        **Cost Optimization Agent →** combines these operational
+        signals to identify potential cost-reduction opportunities.
+        """
+    )
+
+    st.divider()
+
+    # --------------------------------------
+    # COST SAVING RECOMMENDATIONS
+    # --------------------------------------
+
+    st.subheader(
+        "💡 AI Cost-Saving Recommendations"
+    )
+
+    for recommendation in cost_recommendations:
+
+        st.success(
+            "💰 " + recommendation
+        )
+
+    st.divider()
+
+    # --------------------------------------
+    # FACILITY UTILIZATION
+    # --------------------------------------
+
+    st.subheader(
+        "🏢 Facility Utilization"
+    )
+
+    st.metric(
+        "Average Space Utilization",
+        f"{cost_results['average_utilization']:.1f}%"
+    )
+
+    st.caption(
+        "Occupancy intelligence is used to support "
+        "resource-allocation and cost-optimization decisions."
+    )
+
+    st.divider()
+
+    # --------------------------------------
+    # EXECUTIVE SUMMARY
+    # --------------------------------------
+
+    st.subheader(
+        "📋 Executive Summary"
+    )
+
+    st.write(
+        f"""
+        **Facility:** {facility}
+
+        **Estimated Energy Cost:** ₹{cost_results['energy_cost']:,.0f}
+
+        **Estimated Maintenance Cost:** ₹{cost_results['maintenance_cost']:,.0f}
+
+        **Potential Energy Savings:** ₹{cost_results['potential_energy_saving']:,.0f}
+
+        **Potential Maintenance Savings:** ₹{cost_results['potential_maintenance_saving']:,.0f}
+
+        **Potential Total Savings:** ₹{cost_results['total_potential_savings']:,.0f}
+        """
+    )
 
 # ==========================================
 # REPORTS PAGE
