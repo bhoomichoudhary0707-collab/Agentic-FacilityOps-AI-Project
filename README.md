@@ -1,6 +1,6 @@
 # Agentic FacilityOps AI
 
-An AI-powered smart facility operations platform that combines energy intelligence, predictive maintenance, occupancy analytics, security monitoring, and cost optimization into a unified facility management dashboard.
+An AI-powered smart facility operations platform that combines energy intelligence, predictive maintenance, occupancy analytics, security monitoring, cost optimization, and role-based facility access into a unified management dashboard.
 
 ## Overview
 
@@ -8,9 +8,39 @@ Agentic FacilityOps AI is designed to help facility teams monitor operational co
 
 The platform uses specialized AI agents for different facility operations and integrates their outputs through a centralized **Streamlit dashboard**.
 
-The system also supports monitoring multiple facilities through an **Active Location** selection.
+The system supports monitoring multiple facilities through an **Active Location** selection and provides **role-based access** for different facility users.
 
 ## Key Features
+
+### 🔐 Role-Based Login & Access
+
+The platform provides a login system with two user roles:
+
+#### 👨‍💼 Facility Manager
+
+Facility Managers have access to the complete facility intelligence dashboard, including:
+
+- 🏠 Overview
+- ⚡ Energy Intelligence
+- 🔧 Predictive Maintenance
+- 👥 Occupancy Intelligence
+- 🛡️ Security Intelligence
+- 💰 Cost Optimization
+- 📊 Facility Reports
+
+#### 👷 Operator
+
+Operators have access to operational monitoring features:
+
+- 🏠 Overview
+- ⚡ Energy Intelligence
+- 🔧 Predictive Maintenance
+- 👥 Occupancy Intelligence
+- 🛡️ Security Intelligence
+
+Cost Optimization and Facility Reports are restricted from the Operator view.
+
+The current authentication system is designed as a **prototype/demo login system** using role-based session state in Streamlit.
 
 ### ⚡ Energy Intelligence
 
