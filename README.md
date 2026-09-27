@@ -10,6 +10,12 @@ The platform uses specialized AI agents for different facility operations and in
 
 The system supports monitoring multiple facilities through an **Active Location** selection and provides **role-based access** for different facility users.
 
+## 🚀 Live Demo
+
+👉 **[Open the FacilityOps AI Dashboard](https://agentic-facilityops-ai-project-b8qjmnw4puqmle7ijyzfsm.streamlit.app/)**
+
+Explore the live dashboard with role-based access, energy intelligence, predictive maintenance, occupancy analytics, security monitoring, and cost optimization.
+
 ## Key Features
 
 ### 🔐 Role-Based Login & Access
