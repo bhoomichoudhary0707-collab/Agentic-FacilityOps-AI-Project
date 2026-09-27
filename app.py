@@ -123,18 +123,116 @@ def chart_theme(fig):
 
 
 # ==========================================
+# LOGIN / AUTHENTICATION
+# ==========================================
+
+if "authenticated" not in st.session_state:
+    st.session_state.authenticated = False
+
+if "user_role" not in st.session_state:
+    st.session_state.user_role = None
+
+
+if not st.session_state.authenticated:
+
+    st.markdown(
+        """
+        <div style="text-align:center; padding-top:80px;">
+            <h1>⚡ FacilityOps AI</h1>
+            <p style="font-size:18px;">
+                Smart Facility Operations Platform
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.divider()
+
+    col1, col2, col3 = st.columns([1, 2, 1])
+
+    with col2:
+
+        st.subheader("🔐 Login")
+
+        role = st.radio(
+            "Select your account type",
+            [
+                "👨‍💼 Facility Manager",
+                "👷 Operator"
+            ],
+            horizontal=True
+        )
+
+        username = st.text_input("Username")
+
+        password = st.text_input(
+            "Password",
+            type="password"
+        )
+
+        login = st.button(
+            "LOGIN",
+            use_container_width=True,
+            type="primary"
+        )
+
+        if login:
+
+            # Demo credentials for the prototype
+            if (
+                role == "👨‍💼 Facility Manager"
+                and username == "manager"
+                and password == "manager123"
+            ):
+                st.session_state.authenticated = True
+                st.session_state.user_role = "Facility Manager"
+                st.rerun()
+
+            elif (
+                role == "👷 Operator"
+                and username == "operator"
+                and password == "operator123"
+            ):
+                st.session_state.authenticated = True
+                st.session_state.user_role = "Operator"
+                st.rerun()
+
+            else:
+                st.error("Invalid username or password.")
+
+    st.stop()
+
+
+# ==========================================
 # SIDEBAR
 # ==========================================
 
-NAV_PAGES = [
-    "🏠 Overview",
-    "⚡ Energy Intelligence",
-    "🔧 Maintenance",
-    "👥 Occupancy",
-    "🛡️ Security",
-    "💰 Cost Optimization",
-    "📊 Reports"
-]
+# ==========================================
+# ROLE-BASED NAVIGATION
+# ==========================================
+
+if st.session_state.user_role == "Facility Manager":
+
+    NAV_PAGES = [
+        "🏠 Overview",
+        "⚡ Energy Intelligence",
+        "🔧 Maintenance",
+        "👥 Occupancy",
+        "🛡️ Security",
+        "💰 Cost Optimization",
+        "📊 Reports"
+    ]
+
+else:
+
+    NAV_PAGES = [
+        "🏠 Overview",
+        "⚡ Energy Intelligence",
+        "🔧 Maintenance",
+        "👥 Occupancy",
+        "🛡️ Security"
+    ]
 
 
 if "page" not in st.session_state:
@@ -216,8 +314,13 @@ with st.sidebar:
     )
 
     st.write(
-        "**Facility Manager**"
+        f"**{st.session_state.user_role}**"
     )
+
+    if st.button("🚪 Logout", use_container_width=True):
+        st.session_state.authenticated = False
+        st.session_state.user_role = None
+        st.rerun()
 
 
 page = st.session_state.page
